@@ -1,7 +1,6 @@
 <html>
     <head>
         <script>
-
             function calculateDogYears(humanYears, name){
                 // My current age
                 const myAge = humanYears;
@@ -18,10 +17,21 @@
 
                 // My age in dog years
                 let myAgeInDogYears = earlyYears + laterYears;
-                let myName = name.toLowerCase();
+                let myName = titleCase(name);
 
                 //return the results
                 return `My name is ${myName}. I am ${myAge} years old in human years which is ${myAgeInDogYears} years old in dog years.`;
+            }
+
+            function titleCase(str) {
+                let splitStr = str.toLowerCase().split(' ');
+                for (var i = 0; i < splitStr.length; i++) {
+                    // You do not need to check if i is larger than splitStr length, as your for does that for you
+                    // Assign it back to the array
+                    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+                }
+                // Directly return the joined string
+                return splitStr.join(' '); 
             }
 
             function ageConverter(humanYearsBox){
