@@ -1,6 +1,12 @@
 <html>
     <head>
         <script>
+            function ageConverter(humanYearsBox){
+                const name = document.getElementsByName("name").item(0);
+                const messageBox = document.getElementById("messageBox");
+                messageBox.innerHTML = calculateDogYears(humanYearsBox.value, name.value);
+            }
+
             function calculateDogYears(humanYears, name){
                 // My current age
                 const myAge = humanYears;
@@ -22,7 +28,7 @@
                 let myName = titleCase(name);
 
                 //return the results
-                return `${handWave} My name is ${myName}. I am ${myAge} years old in human years. That is ${myAgeInDogYears} years old in ${dogIcon} years!`;
+                return `${handWave} My name is ${myName}. I'm ${myAge} years old in human years. That's ${myAgeInDogYears} years old in ${dogIcon} years!`;
             }
 
             function titleCase(str) {
@@ -35,17 +41,6 @@
                 // Directly return the joined string
                 return splitStr.join(' '); 
             }
-
-            function ageConverter(humanYearsBox){
-
-                const name = document.getElementsByName("name").item(0);
-                const messageBox = document.getElementById("messageBox");
-
-                console.log(humanYearsBox.value);
-                console.log(calculateDogYears(humanYearsBox.value, name.value));
-                messageBox.innerHTML = calculateDogYears(humanYearsBox.value, name.value);
-            }
-
         </script>
         <style>
             .flex-container {
@@ -109,6 +104,7 @@
             <div class="flex-item input-box">
                 <input name="name" type="text" placeholder="Name of your dog"/><br />
             </div>
+
             <div class="flex-item input-box">
                 <input onchange="ageConverter(this)" name="humanYears" type="text" placeholder="Human age of your dog" />
             </div>
