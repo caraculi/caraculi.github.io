@@ -1,1 +1,49 @@
-Hello World!
+<html>
+    <head>
+        <script>
+
+            function calculateDogYears(humanYears, name){
+                // My current age
+                const myAge = humanYears;
+
+                //First two years are different
+                let earlyYears = 2;
+                earlyYears *= 10.5;
+
+                //Remove my early years from my age
+                let laterYears = myAge - 2;
+
+                //After first two years each year is four years
+                laterYears *= 4;
+
+                // My age in dog years
+                let myAgeInDogYears = earlyYears + laterYears;
+                let myName = name.toLowerCase();
+
+                //return the results
+                return `My name is ${myName}. I am ${myAge} years old in human years which is ${myAgeInDogYears} years old in dog years.`;
+            }
+
+            function ageConverter(humanYearsBox){
+
+                const name = document.getElementsByName("name").item(0);
+                const messageBox = document.getElementById("messageBox");
+
+                console.log(humanYearsBox.value);
+                console.log(calculateDogYears(humanYearsBox.value, name.value));
+                messageBox.innerHTML = calculateDogYears(humanYearsBox.value, name.value);
+            }
+
+        </script>
+    </head>
+    <body>
+        <label for="name">Nombre:</label>
+            <input name="name" type="text" />
+        </label><br />
+        <label for="humanYears">Edad humana:</label>
+            <input onchange="ageConverter(this)" name="humanYears" type="text" id="humanYears" />
+        </label><br /><br />
+
+        <div id="messageBox"></div>
+    </body>
+</html>
