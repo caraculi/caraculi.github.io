@@ -13,7 +13,7 @@
                 if (isValidChoice(userInput)){
                     return userInput;
                 } else {
-                    return 'Invalid option!';
+                    return 'Invalid option... try Rock, Paper or Scissors';
                 }
             }
             
@@ -34,9 +34,10 @@
 
             function determineWinner (userChoice, computerChoice){
                 let userWon = "user won! " + "<img src='party.svg' >";
-                let computerWon = "Computer won... " + "<img src='sad-face.svg' >"
+                let computerWon = "Computer won... " + "<img src='sad-face.svg' >";
+                let tie = "Tie  " + "<img src='shake.svg' >";
                 if (userChoice===computerChoice){
-                    return 'tie';
+                    return tie;
                 }
                 if(userChoice==='bomb'){
                     return userWon;
