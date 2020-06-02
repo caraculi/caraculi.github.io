@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <script>
+            const isValidChoice = (userInput) => {
+                return userInput === 'rock' ||
+                userInput === 'paper' ||
+                userInput === 'scissors' ||
+                userInput === 'bomb';
+            }
+
+            const getUserChoice = (userInput) => {
+                userInput = userInput.toLowerCase();
+                if (isValidChoice(userInput)){
+                    return userInput;
+                } else {
+                    return 'Invalid option!';
+                }
+            }
+            
+            function getComputerChoice () {
+                let computerChoice = Math.floor(Math.random()*3);
+                switch (computerChoice) {
+                    case 0:
+                        return 'rock';
+                    break;
+                    case 1:
+                        return 'paper';
+                    break;
+                    case 2:
+                        return 'scissors';
+                    break;
+                }   
+            }
+
+            function determineWinner (userChoice, computerChoice){
+                let userWon = "user won! " + "<img src='party.svg' >";
+                let computerWon = "Computer won... " + "<img src='sad-face.svg' >"
+                if (userChoice===computerChoice){
+                    return 'tie';
+                }
+                if(userChoice==='bomb'){
+                    return userWon;
+                }
+                if (userChoice==='rock'){
+                    if(computerChoice==='paper') {
+                    return computerWon;
+                    } else {
+                    return userWon;
+                    }
+                }
+                if (userChoice==='paper'){
+                    if(computerChoice==='scissors'){
+                    return computerWon;
+                    } else {
+                    return userWon;
+                    }
+                }
+                if (userChoice==='scissors'){
+                    if(computerChoice==='rock'){
+                    return computerWon;
+                    } else {
+                    return userWon;
+                    }
+                } 
+            }
+
+            function playGame(){
+                let userBox = document.getElementById("userChoice");
+                let userChoice = getUserChoice(userBox.value);
+                let computerChoice = getComputerChoice();
+                console.log(userChoice);
+                console.log(computerChoice); 
+                console.log(determineWinner(userChoice, computerChoice));
+                const messageBox = document.getElementById("messageBox");
+                if(isValidChoice(userChoice)){
+                    messageBox.innerHTML = "Computer choses " + computerChoice + "<br />" + determineWinner(userChoice, computerChoice);
+                } else {
+                    messageBox.innerHTML = userChoice;
+                }
+            }
+        </script>
+        <style>
+            .flex-container {
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                -webkit-flex-wrap: nowrap;
+                -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-align-content: center;
+                -ms-flex-line-pack: center;
+                align-content: center;
+                -webkit-align-items: center;
+                -ms-flex-align: center;
+                align-items: center;
+            }
+
+            .flex-item {
+                -webkit-order: 0;
+                -ms-flex-order: 0;
+                order: 0;
+                -webkit-flex: 0 1 auto;
+                -ms-flex: 0 1 auto;
+                flex: 0 1 auto;
+                -webkit-align-self: auto;
+                -ms-flex-item-align: auto;
+                align-self: auto;
+                width: 100%;
+                text-align: center;
+            }
+
+            #messageBox {
+                margin-top: 15px;
+            }
+
+            #messageBox, img {
+                font-size: 4em;                
+            }
+
+            img {
+                height: 0.3em;
+            }
+
+            .input-box input {
+               height: 200px;
+               width: 100%;
+               text-align: center;
+               vertical-align: middle;
+               font-size: 3em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex-container">            
+            <div class="flex-item input-box">
+                <input id="userChoice" type="text" placeholder="Rock, Paper or Scissors?"/><br />
+            </div>
+
+            <div class="flex-item input-box">
+                <input type="button" onclick="playGame()" value="Play!"/><br />
+            </div>
+
+            <div class="flex-item">
+                <div id="messageBox"></div>
+            </div>
+        </div>
+    </body>
+</html>
